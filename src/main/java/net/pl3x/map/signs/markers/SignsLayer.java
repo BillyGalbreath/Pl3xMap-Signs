@@ -107,9 +107,12 @@ public class SignsLayer extends WorldLayer {
         saveData();
     }
 
-    public void removeSign(@NotNull Position pos) {
-        this.signs.remove(pos);
-        saveData();
+    public boolean removeSign(@NotNull Position pos) {
+        if (this.signs.remove(pos) != null) {
+            saveData();
+            return true;
+        }
+        return false;
     }
 
     private void loadData() {

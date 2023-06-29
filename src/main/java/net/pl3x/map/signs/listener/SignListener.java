@@ -211,10 +211,10 @@ public class SignListener implements Listener {
         Location loc = sign.getLocation();
         Position pos = new Position(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
 
-        layer.removeSign(pos);
-
-        // play fancy particles as visualizer
-        particles(sign.getLocation(), layer.getConfig().SIGN_REMOVE_PARTICLES, layer.getConfig().SIGN_REMOVE_SOUND);
+        if (layer.removeSign(pos)) {
+            // play fancy particles as visualizer
+            particles(sign.getLocation(), layer.getConfig().SIGN_REMOVE_PARTICLES, layer.getConfig().SIGN_REMOVE_SOUND);
+        }
     }
 
     protected List<String> getLines(SignSide side) {
